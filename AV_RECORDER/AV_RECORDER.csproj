@@ -80,9 +80,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\RECORDER_LIB\RECORDER_LIB.csproj">
-      <Project>{e2dcc5c6-b1df-416a-9e15-296e11f1825f}</Project>
-      <Name>RECORDER_LIB</Name>
+    <ProjectReference Include="..\AV_RECORDER_LIB\AV_RECORDER_LIB.csproj">
+      <Project>{6e1f5409-d7b5-46a4-bd87-54922c212454}</Project>
+      <Name>AV_RECORDER_LIB</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

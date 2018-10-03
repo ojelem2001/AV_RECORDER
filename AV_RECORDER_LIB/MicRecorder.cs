@@ -12,10 +12,11 @@ namespace AV_RECORDER_LIB
         private BufferedWaveProvider bwp;
         private WaveIn waveIn;
         private WaveOut wo;
+        public delegate void EventLogHandler(object sender, string e);
+        public event EventLogHandler OnSomthingHappened;
 
         public MicRecorder()
         {
-
         }
         public void RecMicStart()
         {
@@ -24,7 +25,7 @@ namespace AV_RECORDER_LIB
                 waveIn = new NAudio.Wave.WaveIn();
                 waveIn.DeviceNumber = 0;
                 waveIn.WaveFormat = new NAudio.Wave.WaveFormat(8000, 1);
-
+                OnSomthingHappened?.Invoke(this, "Add mic recording");
                 wo = new WaveOut();
                 waveIn.DataAvailable += new EventHandler<WaveInEventArgs>(wi_DataAvailable);
                 bwp = new BufferedWaveProvider(waveIn.WaveFormat);
@@ -35,7 +36,7 @@ namespace AV_RECORDER_LIB
             }
             catch (Exception ex)
             {
-              //  LogIt(ex.Message);
+                OnSomthingHappened?.Invoke(this, ex.Message);
             }
         }
         public void RecMicStop()
@@ -43,13 +44,11 @@ namespace AV_RECORDER_LIB
             if (waveIn != null)
             {
                 waveIn.StopRecording();
-                //  LogIt(string.Format("Recording {0} stopped{1}", outputMicName, endLine));
             }
         }
         private void wi_DataAvailable(object sender, WaveInEventArgs e)
         {
             bwp.AddSamples(e.Buffer, 0, e.BytesRecorded);
-            // writer.Write(e.Buffer, 0, e.BytesRecorded);
 
         }
 

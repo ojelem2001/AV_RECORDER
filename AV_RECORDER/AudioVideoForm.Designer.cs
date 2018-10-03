@@ -35,14 +35,16 @@
             this.lbOutFile = new System.Windows.Forms.TextBox();
             this.button_start = new System.Windows.Forms.Button();
             this.chkMic = new System.Windows.Forms.CheckBox();
+            this.lbTimeCounter = new System.Windows.Forms.Label();
+            this.chkRemoveWav = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // statusBox
             // 
-            this.statusBox.Location = new System.Drawing.Point(12, 96);
+            this.statusBox.Location = new System.Drawing.Point(12, 117);
             this.statusBox.Multiline = true;
             this.statusBox.Name = "statusBox";
-            this.statusBox.Size = new System.Drawing.Size(417, 260);
+            this.statusBox.Size = new System.Drawing.Size(417, 239);
             this.statusBox.TabIndex = 4;
             // 
             // label2
@@ -102,11 +104,33 @@
             this.chkMic.Text = "+ Запись с микрофона";
             this.chkMic.UseVisualStyleBackColor = true;
             // 
+            // lbTimeCounter
+            // 
+            this.lbTimeCounter.AutoSize = true;
+            this.lbTimeCounter.Location = new System.Drawing.Point(180, 73);
+            this.lbTimeCounter.Name = "lbTimeCounter";
+            this.lbTimeCounter.Size = new System.Drawing.Size(0, 13);
+            this.lbTimeCounter.TabIndex = 16;
+            // 
+            // chkRemoveWav
+            // 
+            this.chkRemoveWav.AutoSize = true;
+            this.chkRemoveWav.Checked = true;
+            this.chkRemoveWav.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkRemoveWav.Location = new System.Drawing.Point(15, 94);
+            this.chkRemoveWav.Name = "chkRemoveWav";
+            this.chkRemoveWav.Size = new System.Drawing.Size(173, 17);
+            this.chkRemoveWav.TabIndex = 17;
+            this.chkRemoveWav.Text = "+ Удалить wav после записи";
+            this.chkRemoveWav.UseVisualStyleBackColor = true;
+            // 
             // AudioVideoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(553, 369);
+            this.Controls.Add(this.chkRemoveWav);
+            this.Controls.Add(this.lbTimeCounter);
             this.Controls.Add(this.chkMic);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -130,6 +154,8 @@
         private System.Windows.Forms.TextBox lbOutFile;
         private System.Windows.Forms.Button button_start;
         private System.Windows.Forms.CheckBox chkMic;
+        private System.Windows.Forms.Label lbTimeCounter;
+        private System.Windows.Forms.CheckBox chkRemoveWav;
     }
 }
 
