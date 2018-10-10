@@ -14,6 +14,7 @@ namespace AV_RECORDER
         private string startdate;
         private string audioOutputWavFile;
         private string audioOutputMp3File;
+        private string outputFileName;
         private string prefixWav = ".wav";
         private string prefixMp3 = ".mp3";
         private AudioRecorder AudioRecClass;
@@ -60,10 +61,13 @@ namespace AV_RECORDER
         {
             button_start.BackColor = Color.Red;
             outputDir = lbOutputDir.Text;
-            
+            outputFileName = lbOutputFileName.Text;
+            if (outputFileName != null) {
+                outputFileName = string.Concat('_', outputFileName);
+            }
             startdate = DateTime.Now.ToString("yyyyMMddHHmmss");
-            audioOutputWavFile = string.Concat(outputDir, startdate, prefixWav);
-            audioOutputMp3File = string.Concat(outputDir, startdate, prefixMp3);
+            audioOutputWavFile = string.Concat(outputDir, startdate, outputFileName, prefixWav);
+            audioOutputMp3File = string.Concat(outputDir, startdate, outputFileName, prefixMp3);
             lbOutFile.Text = audioOutputWavFile;
             AudioRecClass.RecSoundStart(audioOutputWavFile, audioOutputMp3File);
             StartTimeCounter();//Start time counter

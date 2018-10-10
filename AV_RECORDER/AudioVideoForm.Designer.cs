@@ -37,11 +37,13 @@
             this.chkMic = new System.Windows.Forms.CheckBox();
             this.lbTimeCounter = new System.Windows.Forms.Label();
             this.chkRemoveWav = new System.Windows.Forms.CheckBox();
+            this.lbOutputFileName = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // statusBox
             // 
-            this.statusBox.Location = new System.Drawing.Point(12, 117);
+            this.statusBox.Location = new System.Drawing.Point(12, 194);
             this.statusBox.Multiline = true;
             this.statusBox.Name = "statusBox";
             this.statusBox.Size = new System.Drawing.Size(417, 239);
@@ -50,7 +52,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 40);
+            this.label2.Location = new System.Drawing.Point(9, 67);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(101, 13);
             this.label2.TabIndex = 14;
@@ -59,7 +61,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(9, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(155, 13);
             this.label1.TabIndex = 13;
@@ -76,7 +78,7 @@
             // lbOutFile
             // 
             this.lbOutFile.Enabled = false;
-            this.lbOutFile.Location = new System.Drawing.Point(180, 40);
+            this.lbOutFile.Location = new System.Drawing.Point(180, 67);
             this.lbOutFile.Name = "lbOutFile";
             this.lbOutFile.Size = new System.Drawing.Size(249, 20);
             this.lbOutFile.TabIndex = 11;
@@ -97,7 +99,7 @@
             this.chkMic.AutoSize = true;
             this.chkMic.Checked = true;
             this.chkMic.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkMic.Location = new System.Drawing.Point(15, 73);
+            this.chkMic.Location = new System.Drawing.Point(15, 122);
             this.chkMic.Name = "chkMic";
             this.chkMic.Size = new System.Drawing.Size(142, 17);
             this.chkMic.TabIndex = 15;
@@ -107,7 +109,7 @@
             // lbTimeCounter
             // 
             this.lbTimeCounter.AutoSize = true;
-            this.lbTimeCounter.Location = new System.Drawing.Point(180, 73);
+            this.lbTimeCounter.Location = new System.Drawing.Point(177, 102);
             this.lbTimeCounter.Name = "lbTimeCounter";
             this.lbTimeCounter.Size = new System.Drawing.Size(0, 13);
             this.lbTimeCounter.TabIndex = 16;
@@ -117,18 +119,36 @@
             this.chkRemoveWav.AutoSize = true;
             this.chkRemoveWav.Checked = true;
             this.chkRemoveWav.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkRemoveWav.Location = new System.Drawing.Point(15, 94);
+            this.chkRemoveWav.Location = new System.Drawing.Point(15, 143);
             this.chkRemoveWav.Name = "chkRemoveWav";
             this.chkRemoveWav.Size = new System.Drawing.Size(173, 17);
             this.chkRemoveWav.TabIndex = 17;
             this.chkRemoveWav.Text = "+ Удалить wav после записи";
             this.chkRemoveWav.UseVisualStyleBackColor = true;
             // 
+            // lbOutputFileName
+            // 
+            this.lbOutputFileName.Location = new System.Drawing.Point(180, 38);
+            this.lbOutputFileName.Name = "lbOutputFileName";
+            this.lbOutputFileName.Size = new System.Drawing.Size(249, 20);
+            this.lbOutputFileName.TabIndex = 18;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(9, 41);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(77, 13);
+            this.label3.TabIndex = 19;
+            this.label3.Text = "Метка файла:";
+            // 
             // AudioVideoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(553, 369);
+            this.ClientSize = new System.Drawing.Size(553, 450);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.lbOutputFileName);
             this.Controls.Add(this.chkRemoveWav);
             this.Controls.Add(this.lbTimeCounter);
             this.Controls.Add(this.chkMic);
@@ -156,6 +176,8 @@
         private System.Windows.Forms.CheckBox chkMic;
         private System.Windows.Forms.Label lbTimeCounter;
         private System.Windows.Forms.CheckBox chkRemoveWav;
+        private System.Windows.Forms.TextBox lbOutputFileName;
+        private System.Windows.Forms.Label label3;
     }
 }
 
