@@ -18,6 +18,10 @@ namespace AV_RECORDER_LIB
         public MicRecorder()
         {
         }
+        private async void LogIt(string message)
+        {
+            OnSomthingHappened?.Invoke(this, message);
+        }
         public void RecMicStart()
         {
             try
@@ -25,7 +29,7 @@ namespace AV_RECORDER_LIB
                 waveIn = new NAudio.Wave.WaveIn();
                 waveIn.DeviceNumber = 0;
                 waveIn.WaveFormat = new NAudio.Wave.WaveFormat(8000, 1);
-                OnSomthingHappened?.Invoke(this, "Add mic recording");
+                LogIt("microphone recording added");
                 wo = new WaveOut();
                 waveIn.DataAvailable += new EventHandler<WaveInEventArgs>(wi_DataAvailable);
                 bwp = new BufferedWaveProvider(waveIn.WaveFormat);
@@ -49,7 +53,6 @@ namespace AV_RECORDER_LIB
         private void wi_DataAvailable(object sender, WaveInEventArgs e)
         {
             bwp.AddSamples(e.Buffer, 0, e.BytesRecorded);
-
         }
 
     }

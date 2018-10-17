@@ -31,6 +31,12 @@ namespace AV_RECORDER_LIB
         {
 
         }
+        private  void LogIt(string message)
+        {
+            //  await Task.Factory.StartNew(() => OnSomthingChanged?.Invoke(this, message), TaskCreationOptions.LongRunning);
+            OnSomthingChanged?.Invoke(this, message);
+        }
+
         public void RecSoundStart(string audioOutputWavFile, string audioOutputMp3File)
         {
             _outputWaveName = audioOutputWavFile;
@@ -43,11 +49,12 @@ namespace AV_RECORDER_LIB
                 w.Write(capData.Data, capData.Offset, capData.ByteCount);
             };
             capture.Start();
-            OnSomthingChanged?.Invoke(this, string.Format("Recording {0} started", _outputWaveName));
+            LogIt(string.Format("recording {0} started", _outputWaveName));
+            // OnSomthingChanged?.Invoke(this, string.Format("Recording {0} started", _outputWaveName));
         }
-        public string RecSoundStop()
+        public void RecSoundStop(bool isDeleteWav)
         {
-
+ 
             if (w != null && capture != null)
             {
                 capture.Stop();
@@ -55,11 +62,19 @@ namespace AV_RECORDER_LIB
                 w = null;
                 capture.Dispose();
                 capture = null;
-                OnSomthingChanged?.Invoke(this, string.Format("Recording {0} stopped", _outputWaveName));
-                ConvertWavToMp3(_outputWaveName);
-                return _outputWaveName;
+
+                LogIt("began converting to mp3");               
+                Task task1 = Task.Factory.StartNew(()=> ConvertToMP3(_outputWaveName));
+                task1.Wait();
+                LogIt(string.Format("converting finished to {0}", _outputMp3Name));
+
+                if (isDeleteWav)
+                {
+                    File.Delete(_outputWaveName);
+                    LogIt(string.Format("File {0} deleted", _outputWaveName));
+                }
+                LogIt(string.Format("recording {0} stopped", _outputWaveName));
             }
-            return null;
         }
         public string InitializeTimeCount(IProgress<string> progress)
         {
@@ -77,12 +92,11 @@ namespace AV_RECORDER_LIB
         }
         public void DeInitializeTimeCount()
         {
-            stopWorkEvent.Set();
-        }
-        private void ConvertWavToMp3(string fileName)
+          stopWorkEvent.Set();
+        } 
+        private void ConvertToMP3(string fileName)
         {
-            OnSomthingChanged?.Invoke(this, "Converting to mp3");
-            byte[]  wavFile =  File.ReadAllBytes(fileName);
+            byte[] wavFile = File.ReadAllBytes(fileName);
             using (var retMs = new MemoryStream())
             using (var ms = new MemoryStream(wavFile))
             using (var rdr = new NA.WaveFileReader(ms))
@@ -92,11 +106,12 @@ namespace AV_RECORDER_LIB
                 wtr.Flush();
                 File.WriteAllBytes(_outputMp3Name, retMs.ToArray());
             }
-            OnSomthingChanged?.Invoke(this, string.Format("Converting finished to {0}", _outputMp3Name));
-        } 
+            Thread.Sleep(10000);
+         }
 
-       
-      
+
+
+
         private string timer_Tick()
         {
             DateTime current_time = DateTime.Now;

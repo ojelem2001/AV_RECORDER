@@ -39,6 +39,7 @@
             this.chkRemoveWav = new System.Windows.Forms.CheckBox();
             this.lbOutputFileName = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnClearAll = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // statusBox
@@ -105,6 +106,7 @@
             this.chkMic.TabIndex = 15;
             this.chkMic.Text = "+ Запись с микрофона";
             this.chkMic.UseVisualStyleBackColor = true;
+            this.chkMic.CheckedChanged += new System.EventHandler(this.chkMic_CheckedChanged);
             // 
             // lbTimeCounter
             // 
@@ -125,6 +127,7 @@
             this.chkRemoveWav.TabIndex = 17;
             this.chkRemoveWav.Text = "+ Удалить wav после записи";
             this.chkRemoveWav.UseVisualStyleBackColor = true;
+            this.chkRemoveWav.CheckedChanged += new System.EventHandler(this.chkRemoveWav_CheckedChanged);
             // 
             // lbOutputFileName
             // 
@@ -142,11 +145,22 @@
             this.label3.TabIndex = 19;
             this.label3.Text = "Метка файла:";
             // 
+            // btnClearAll
+            // 
+            this.btnClearAll.Location = new System.Drawing.Point(353, 165);
+            this.btnClearAll.Name = "btnClearAll";
+            this.btnClearAll.Size = new System.Drawing.Size(75, 23);
+            this.btnClearAll.TabIndex = 20;
+            this.btnClearAll.Text = "ClearAll";
+            this.btnClearAll.UseVisualStyleBackColor = true;
+            this.btnClearAll.Click += new System.EventHandler(this.btnClearAll_Click);
+            // 
             // AudioVideoForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(553, 450);
+            this.Controls.Add(this.btnClearAll);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.lbOutputFileName);
             this.Controls.Add(this.chkRemoveWav);
@@ -178,6 +192,7 @@
         private System.Windows.Forms.CheckBox chkRemoveWav;
         private System.Windows.Forms.TextBox lbOutputFileName;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnClearAll;
     }
 }
 
